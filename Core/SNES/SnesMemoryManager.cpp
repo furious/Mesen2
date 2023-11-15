@@ -320,6 +320,7 @@ void SnesMemoryManager::Write(uint32_t addr, uint8_t value, MemoryOperationType 
 		if(handler) {
 			handler->Write(addr, value);
 			_memTypeBusA = handler->GetMemoryType();
+			_openBus = value;
 		} else {
 			LogDebug("[Debug] Write - missing handler: $" + HexUtilities::ToHex(addr) + " = " + HexUtilities::ToHex(value));
 		}

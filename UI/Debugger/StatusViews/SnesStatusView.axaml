@@ -73,6 +73,10 @@
 							<TextBlock>Cycle:</TextBlock>
 							<c:MesenNumericTextBox Width="70" Value="{CompiledBinding CycleCount}" IsEnabled="False" />
 						</StackPanel>
+						<StackPanel Orientation="Horizontal">
+							<TextBlock>MDR:</TextBlock>
+							<c:MesenNumericTextBox Value="{CompiledBinding RegMDR}" Hex="True" IsEnabled="False" />
+						</StackPanel>
 					</WrapPanel>
 
 					<Rectangle Stroke="{StaticResource MesenGrayBorderColor}" StrokeThickness="1" Margin="5 5 5 2" />

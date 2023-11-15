@@ -30,6 +30,8 @@ namespace Mesen.Debugger.StatusViews
 		[Reactive] public bool FlagC { get; set; }
 
 		[Reactive] public bool FlagE { get; set; }
+
+		[Reactive] public byte RegMDR { get; set; }
 		
 		[Reactive] public bool FlagNmi { get; set; }
 		[Reactive] public bool FlagIrqHvCounters { get; set; }
@@ -103,6 +105,7 @@ namespace Mesen.Debugger.StatusViews
 			RegPS = (byte)cpu.PS;
 
 			FlagE = cpu.EmulationMode;
+			RegMDR = (byte)DebugApi.GetInstructionProgress(_cpuType).LastMemOperation.Value;
 			FlagNmi = cpu.NmiFlag;
 			FlagIrqHvCounters = (cpu.IrqSource & (byte)SnesIrqSource.Ppu) != 0;
 			FlagIrqCoprocessor = (cpu.IrqSource & (byte)SnesIrqSource.Coprocessor) != 0;

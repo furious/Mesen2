@@ -46,6 +46,7 @@
 		<CFBundleIconFile>MesenIcon.icns</CFBundleIconFile> <!-- Will be copied from output directory -->
 		<NSPrincipalClass>NSApplication</NSPrincipalClass>
 		<NSHighResolutionCapable>true</NSHighResolutionCapable>
+		<BaseOutputPath></BaseOutputPath>
 	</PropertyGroup>
 	<ItemGroup>
 	  <None Remove="Assets\MsgBoxInfo.png" />
@@ -560,7 +561,7 @@
   </ItemGroup>
 
   <Target Name="PreBuildWindows" BeforeTargets="PreBuildEvent" Condition="'$(RuntimeIdentifier)'=='win-x64'">
-    <Exec Command="cd $(OutDir)&#xD;&#xA;rd Dependencies /s /q&#xD;&#xA;md Dependencies&#xD;&#xA;xcopy /s $(ProjectDir)Dependencies\* Dependencies&#xD;&#xA;copy libHarfBuzzSharp.dll Dependencies&#xD;&#xA;copy libSkiaSharp.dll Dependencies&#xD;&#xA;copy MesenCore.dll Dependencies&#xD;&#xA;cd Dependencies&#xD;&#xA;del ..\Dependencies.zip&#xD;&#xA;powershell Compress-Archive -Path * -DestinationPath '..\Dependencies.zip' -Force&#xD;&#xA;copy ..\Dependencies.zip $(ProjectDir)" />
+    <Exec Command='cd $(OutDir)&#xD;&#xA;rd Dependencies /s /q&#xD;&#xA;md Dependencies&#xD;&#xA;xcopy /s "$(ProjectDir)Dependencies\*" "Dependencies"&#xD;&#xA;copy libHarfBuzzSharp.dll Dependencies&#xD;&#xA;copy libSkiaSharp.dll Dependencies&#xD;&#xA;copy MesenCore.dll Dependencies&#xD;&#xA;cd Dependencies&#xD;&#xA;del ..\Dependencies.zip&#xD;&#xA;powershell Compress-Archive -Path * -DestinationPath "..\Dependencies.zip" -Force&#xD;&#xA;copy ..\Dependencies.zip "$(ProjectDir)"' />
   </Target>
 
 	<Target Name="PreBuildLinux" BeforeTargets="PreBuildEvent" Condition="'$(RuntimeIdentifier)'=='linux-x64'">
